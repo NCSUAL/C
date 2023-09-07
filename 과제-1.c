@@ -10,17 +10,13 @@ int main(){
 	int count =1;
 	printf("%d층 피라미드\n",output);
 	for(int a=0; a<output; a++){
-		if(a%2==0){
-			count+=2;
-			for(int c=0; c<count; c++){
-				printf(" ");
-			}
-			for(int b=0; b<count; b++){
-				printf("*");
-			}
+		for(int b= output-a; b>0; b--){
+			printf(" ");
 		}
-		else{
-			
+		for(int c = 1; c<=count; c++){
+			printf("*");
 		}
+		count+=2;
+		printf("\n");
 	}
 }
