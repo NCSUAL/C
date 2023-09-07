@@ -6,12 +6,21 @@ static int scanf_int(){
 };
 
 int main(){
-	int a1 = scanf_int();
-	for(int a=0; a<a1; a++){
-		//git 요청 
-		for(int b=0; b<=a;b++){
-			printf(" *");
+	int output = scanf_int();
+	int count =1;
+	printf("%d층 피라미드\n",output);
+	for(int a=0; a<output; a++){
+		if(a%2==0){
+			count+=2;
+			for(int c=0; c<count; c++){
+				printf(" ");
+			}
+			for(int b=0; b<count; b++){
+				printf("*");
+			}
 		}
-		printf("\n");
+		else{
+			
+		}
 	}
 }
