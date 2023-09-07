@@ -8,6 +8,7 @@ static int scanf_int(){
 int main(){
 	int a1 = scanf_int();
 	for(int a=0; a<a1; a++){
+		//git ¿äÃ» 
 		for(int b=0; b<=a;b++){
 			printf(" *");
 		}
