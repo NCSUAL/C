@@ -9,8 +9,6 @@ int main(){
 				printf("%d\n", b*a);	
 			}
 			}
-			else{		
-			}
 			a++;
 		}
 }
