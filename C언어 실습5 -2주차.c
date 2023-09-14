@@ -8,4 +8,5 @@ int main(){
 			printf("합이 홀수 입니다 %d\n",hap);
 		}
 	}
+	return 0;
 }
