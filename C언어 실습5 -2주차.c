@@ -5,7 +5,7 @@ int main(){
 	for(count = 1; count<=10;count++){
 		if(count%2!=0){
 			hap +=count;
-			printf("합이 홀수 입니다 %d\n",hap);
+			printf("%d가 홀수 입니다 결과값: %d\n",count,hap);
 		}
 	}
 	return 0;
