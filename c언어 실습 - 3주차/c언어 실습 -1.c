@@ -9,7 +9,7 @@ int main(){
 	int number = scanf_int();
 	int a; 
 	if(number==1){
-		printf("1은 소수입니다",number);
+		printf("1은 소수가 아닙니다",number);
 	}
 	else{
 		for(a=2; a<number ;a++){
