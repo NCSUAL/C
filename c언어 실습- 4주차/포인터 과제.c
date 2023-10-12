@@ -10,11 +10,7 @@ void swap(int *a, int *b){
 	*a = *b;
 	*b = temp;
 }
-int main(){
-	//배열크기 받기
-	printf("배열크기:");
-	int number = scanf_int();
-	
+void sort(number){
 	//배열 받기 -변수 선언 
 	int* array = (int*)malloc(number * sizeof(int));
 	//배열 받기 -반복문
@@ -48,4 +44,10 @@ int main(){
 		printf("%d ",array[b]);
 	} 
 	free(array);
+}
+int main(){
+	//배열크기 받기
+	printf("배열크기:");
+	int number = scanf_int();
+	sort(number);
 }
