@@ -1,34 +1,35 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-typedef struct _information{
-	int number;
-	char name[100];
-	int grade;
-}information;
-int scanf_int(){
-	int a;
-	scanf("%d",&a);
-	return a;
-}
-int main(){
-	int n = scanf_int();
-	information* array = (information*)malloc(n*sizeof(information));
-	
-	for(int a=0; a<n;a++){
-		printf("학생 학번:");
-		scanf("%d",&array[a].number);
-		printf("학생 이름:");
-		scanf("%s",array[a].name);
-		printf("학생 성적:");
-		scanf("%d",&array[a].grade);
-	}
-	
-	for(int a=0; a<n;a++){
-		printf("%d\n",array[a].number);
-		printf("%s\n",array[a].name);
-		printf("%d\n",array[a].grade);
-	}
-	
-	printf("%d",sizeof(information));
+struct Student {
+   int sno;
+   char name[10];
+   int score;
+};
+
+int main() {
+   int numStudent;
+   printf("학생 수 입력 : ");
+   scanf_s("%d", &numStudent);
+
+   struct Student* std;
+   std = (struct Student *)malloc(sizeof(struct Student) * numStudent);
+
+   for (int i = 0; i < numStudent; i++) {
+      printf("학생 #%d-%d 학번 입력: ", numStudent, i + 1);
+      scanf_s("%d", &(std[i].sno));
+
+      printf("학생 #%d-%d 이름 입력: ", numStudent, i + 1);
+      scanf_s("%s", std[i].name, 10);
+
+      printf("학생 #%d-%d 성적 입력: ", numStudent, i + 1);
+      scanf_s("%d", &(std[i].score));
+   }
+
+   int sum = 0;
+   for (int i = 0; i < numStudent; i++) {
+      sum += std[i].score;
+   }
+   printf("%d\n", sum);
+   return 0;
 }
