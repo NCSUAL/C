@@ -26,5 +26,7 @@ int main(){
 		printf("학생 # %d-%d 성적출력: %d\n",n,a+1,array[a]);
 	}
 	
-	printf("평균점수: %d",answer/n);
+	printf("평균점수: %.1f",(float)answer/n);
+	free(array);
+	array = NULL;
 }
