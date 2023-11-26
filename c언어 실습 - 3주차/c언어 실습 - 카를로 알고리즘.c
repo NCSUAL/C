@@ -1,34 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <math.h> 
+
+int scanf_int(){
+	int a;
+	scanf("%d",&a);
+	return a;
+}
+
+void swap(int *a,int *b){
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
 
 int main(){
-   int rolling = pow(10,9);
-   double x =0;
-   double y=0;
-   double z = 0;
-   int pick = pow(10,7);
-   int stack = 1;
-   
-   int circle = 0;
-   double k;
-   double result;
-   srand(time(NULL));
-   
-   for(int a=1; a<=rolling; a++){
-      x = (double)rand() / (double)RAND_MAX;
-      y = (double)rand() / (double)RAND_MAX;
-      z = x*x + y*y;
-      if(z<=1){
-         circle++;
-      }
-      if(a%pick==0){
-         k = (double)circle / a;
-         result = (double)k * 4;
-         printf("%d%% 진행, 현재 원주율: %f\n",stack,result);
-         stack++;
-      }
-   }
-   printf("최종 원주율: %f", result);
+	printf("배열크기:");
+	int length = scanf_int();
+	int* array = (int*)malloc(length*sizeof(int));
+	
+	for(int a=0; a<length; a++){
+		scanf("%d",&array[a]);
+	}
+	
+	int index =0;
+	int stack = 0;
+	while(stack<length-1){
+		index = stack;
+		for(index; index<length; index++){
+			if(array[stack]>array[index]){
+				swap(&array[stack],&array[index]);
+				printf("1\n");
+			}
+		}
+		stack++;
+	}
+	
+	for(int b=0; b<length;b++){
+		printf("%d",array[b]);
+	}
+	free(array);
 }
