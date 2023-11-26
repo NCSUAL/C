@@ -6,8 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-//버퍼 사이즈 정의 2232
-//테스트 
+//버퍼 사이즈 정의 
 #define Buffer 128
 int main(int argc, char *argv[]){
 	//인자 2개 인지 확인
