@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-//버퍼 사이즈 정의 223
+//버퍼 사이즈 정의 2232
 //테스트 
 #define Buffer 128
 int main(int argc, char *argv[]){
