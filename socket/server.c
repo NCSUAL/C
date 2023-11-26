@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 	
 	//소켓 생성 
 	//PF_INET (protocol family internet) -> ipv4 프로토콜 사용한다는 뜻
-	//SOCK_STREAM -> 소켓을 스트림형식으로 사용한다는 뜻ㅇ 
+	//SOCK_STREAM -> 소켓을 스트림형식으로 사용한다는 뜻
 	//0 -> 기본 TCP로 설정한다는 뜻 
 	int Sock = socket(PF_INET,SOCK_STREAM,0);
 	
