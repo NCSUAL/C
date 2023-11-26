@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <netient/in.h>
+#include <netinet/in.h>
 
 //버퍼 사이즈 정의 
 #define Buffer 128
