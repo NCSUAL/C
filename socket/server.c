@@ -21,5 +21,5 @@ int main(int argc, char *argv[]){
 	//0 -> 기본 TCP로 설정한다는 뜻 
 	int Sock = socket(PF_INET,SOCK_STREAM,0);
 	
-	printf("정상작동 포트: %s",argv[1]);
+	printf("정상작동 포트: %s\n",argv[1]);
 }
