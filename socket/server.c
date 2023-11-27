@@ -59,7 +59,18 @@ int main(int argc, char *argv[]){
 	printf("listen function error\n");
 	}
 	else{
-	printf("listen complete\n"); 
+	printf("wait...\n"); 
 	}
-		
+
+	//클라이언트 요청 수락
+
+	//클라이언트 ipv4주소
+	struct sockaddr_in client_server;
+	//sockaddr_in 사이즈
+	socklen_t client_server_size = sizeof(client_server);
+
+	//클라이언트 소켓 & 요청 허락
+	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
+
+	
 }
