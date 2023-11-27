@@ -37,13 +37,16 @@ int main(int argc, char *argv[]){
 	//초기화
 	memset(&addr_server,0,sizeof(addr_server));
 
+	//string -> integer
+	int port = atoi(argv[1]);
+	
 	//정보 입력
 	addr_server.sin_family = AF_INET;
-	addr_server.sin_addr.s_addr =htol(INADDR_ANY);
-	addr_server.sin_port = htons(argv[1]);
+	addr_server.sin_addr.s_addr =htonl(INADDR_ANY);
+	addr_server.sin_port = htons(port);
 
 	//바인드 유효성 -> 서버에 이 네트워크 구조를 사용한다고 장치에 알림
-	if(bind(Sock,&addr_server,sizeof(addr_server)) == -1){
+	if(bind(Sock, (struct sockaddr_in*) &addr_server,sizeof(addr_server)) == -1){
 	printf("bind error");
 	}
 	else{
