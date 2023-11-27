@@ -34,6 +34,7 @@ int main(int argc, char *argv[]){
 
 	//네트워크 정보 입력 - 서버
 	struct sockaddr_in addr_server;
+	
 	//초기화
 	memset(&addr_server,0,sizeof(addr_server));
 
@@ -45,12 +46,20 @@ int main(int argc, char *argv[]){
 	addr_server.sin_addr.s_addr =htonl(INADDR_ANY);
 	addr_server.sin_port = htons(port);
 
-	//바인드 유효성 -> 서버에 이 네트워크 구조를 사용한다고 장치에 알림
+	//바인드, 유효성 검사 -> 서버에 이 네트워크 구조를 사용한다고 장치에 알림
 	if(bind(Sock, (struct sockaddr*) &addr_server,sizeof(addr_server)) == -1){
-	printf("bind error");
+	printf("bind error\n");
 	}
 	else{
-	printf("bind complete");
+	printf("bind complete\n");
+	}
+
+	//리슨 -> 클라이언트 요청을 받음
+	if(listen(Sock,43)==-1){
+	printf("listen function error\n");
+	}
+	else{
+	printf("listen complete\n"); 
 	}
 		
 }
