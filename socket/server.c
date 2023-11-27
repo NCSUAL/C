@@ -6,20 +6,28 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-//¹öÆÛ »çÀÌÁî Á¤ÀÇ 
+//ë²„í¼ ì‚¬ì´ì¦ˆ ì •ì˜ 
 #define Buffer 128
 int main(int argc, char *argv[]){
-	//ÀÎÀÚ 2°³ ÀÎÁö È®ÀÎ
+	//ì¸ìž 2ê°œ ì¸ì§€ í™•ì¸
 	if(argc!=2){
-		fprintf(stderr,"ÀÎÀÚ 2°³ÀÓ");
+		fprintf(stderr,"ì¸ìž 2ê°œìž„");
 		exit(1);
 	} 
 	
-	//¼ÒÄÏ »ý¼º 
-	//PF_INET (protocol family internet) -> ipv4 ÇÁ·ÎÅäÄÝ »ç¿ëÇÑ´Ù´Â ¶æ
-	//SOCK_STREAM -> ¼ÒÄÏÀ» ½ºÆ®¸²Çü½ÄÀ¸·Î »ç¿ëÇÑ´Ù´Â ¶æ
-	//0 -> ±âº» TCP·Î ¼³Á¤ÇÑ´Ù´Â ¶æ 
+	//ì†Œì¼“ ìƒì„± 
+	//PF_INET (protocol family internet) -> ipv4 í”„ë¡œí† ì½œ ì‚¬ìš©í•œë‹¤ëŠ” ëœ»
+	//SOCK_STREAM -> ì†Œì¼“ì„ ìŠ¤íŠ¸ë¦¼í˜•ì‹ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤ëŠ” ëœ»
+	//0 -> ê¸°ë³¸ TCPë¡œ ì„¤ì •í•œë‹¤ëŠ” ëœ» 
 	int Sock = socket(PF_INET,SOCK_STREAM,0);
 	
 	printf("server_port_open: %s\n",argv[1]);
+
+	//ì†Œì¼“ ìœ íš¨ì„± ê²€ì‚¬
+	if(Sock == -1){
+	printf("error_socket");
+	}
+	else{
+	printf("socket create");
+	}
 }
