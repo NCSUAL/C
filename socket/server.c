@@ -47,6 +47,7 @@ int main(int argc, char *argv[]){
 	addr_server.sin_port = htons(port);
 
 	//바인드, 유효성 검사 -> 서버에 이 네트워크 구조를 사용한다고 장치에 알림
+	//sockaddr로 형변환 시켜줘야함
 	if(bind(Sock, (struct sockaddr*) &addr_server,sizeof(addr_server)) == -1){
 	printf("bind error\n");
 	}
@@ -66,10 +67,11 @@ int main(int argc, char *argv[]){
 
 	//클라이언트 ipv4주소
 	struct sockaddr_in client_server;
-	//sockaddr_in 사이즈
+	//sockaddr_in 사이즈전달 -> socklen_t가 주소길이를 나타내는 데 특화됨
 	socklen_t client_server_size = sizeof(client_server);
 
 	//클라이언트 소켓 & 요청 허락
+	//sockaddr로 형변환 시켜줘야함
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
 	//클라이언트 소켓 유효성 검사
