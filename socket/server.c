@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
 	addr_server.sin_port = htons(argv[1]);
 
 	//바인드 유효성 -> 서버에 이 네트워크 구조를 사용한다고 장치에 알림
-	if(bind(addr_server,&addr_server,sizeof(addr_server)) == -1){
+	if(bind(Sock,&addr_server,sizeof(addr_server)) == -1){
 	printf("bind error");
 	}
 	else{
