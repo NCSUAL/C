@@ -72,5 +72,11 @@ int main(int argc, char *argv[]){
 	//클라이언트 소켓 & 요청 허락
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
-	
+	//클라이언트 소켓 유효성 검사
+	if(client_socket == -1){
+	printf("accept_error");
+	}
+	else{
+	printf("connect complete");
+	}
 }
