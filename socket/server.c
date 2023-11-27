@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]){
 	//인자 2개 인지 확인
 	if(argc!=2){
-		fprintf(stderr,"inja need 2");
+		fprintf(stderr,"inja need 2\n");
 		exit(1);
 	} 
 	
@@ -25,9 +25,16 @@ int main(int argc, char *argv[]){
 
 	//소켓 유효성 검사
 	if(Sock == -1){
-	printf("error_socket");
+	printf("error_socket\n");
 	}
+	//소켓 생성 실패
 	else{
-	printf("socket create");
+	printf("socket create\n");
 	}
+
+	//네트워크 정보 입력 - 서버
+	struct sockaddr_in addr_server;
+	//초기화
+	memset(&addr_server,0,sizeof(addr_server));
+		
 }
