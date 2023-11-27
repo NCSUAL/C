@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]){
 	//인자 2개 인지 확인
 	if(argc!=2){
-		fprintf(stderr,"인자 2개임");
+		fprintf(stderr,"inja need 2");
 		exit(1);
 	} 
 	
