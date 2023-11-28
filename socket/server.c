@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]){
 	//인자 2개 인지 확인
 	if(argc!=2){
-		fprintf(stderr,"인자 2개임");
+		fprintf(stderr,"inja need 2\n");
 		exit(1);
 	} 
 	
@@ -22,4 +22,64 @@ int main(int argc, char *argv[]){
 	int Sock = socket(PF_INET,SOCK_STREAM,0);
 	
 	printf("server_port_open: %s\n",argv[1]);
+
+	//소켓 유효성 검사
+	if(Sock == -1){
+	printf("error_socket\n");
+	}
+	//소켓 생성 실패
+	else{
+	printf("socket create\n");
+	}
+
+	//네트워크 정보 입력 - 서버
+	struct sockaddr_in addr_server;
+	
+	//초기화
+	memset(&addr_server,0,sizeof(addr_server));
+
+	//string -> integer
+	int port = atoi(argv[1]);
+	
+	//정보 입력
+	addr_server.sin_family = AF_INET;
+	addr_server.sin_addr.s_addr =htonl(INADDR_ANY);
+	addr_server.sin_port = htons(port);
+
+	//바인드, 유효성 검사 -> 서버에 이 네트워크 구조를 사용한다고 장치에 알림
+	//sockaddr로 형변환 시켜줘야함
+	if(bind(Sock, (struct sockaddr*) &addr_server,sizeof(addr_server)) == -1){
+	printf("bind error\n");
+	}
+	else{
+	printf("bind complete\n");
+	}
+
+	//리슨 -> 클라이언트 요청을 받음
+	if(listen(Sock,43)==-1){
+	printf("listen function error\n");
+	}
+	else{
+	printf("wait...\n"); 
+	}
+
+	//클라이언트 요청 수락
+
+	//클라이언트 ipv4주소
+	struct sockaddr_in client_server;
+	//sockaddr_in 사이즈전달 -> socklen_t가 주소길이를 나타내는 데 특화됨
+	socklen_t client_server_size = sizeof(client_server);
+
+	//클라이언트 소켓 & 요청 허락
+	//sockaddr로 형변환 시켜줘야함
+	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
+
+	//클라이언트 소켓 유효성 검사
+	if(client_socket == -1){
+	printf("accept_error\n");
+	}
+	else{
+	printf("connect complete\n");
+	}
 }
+
