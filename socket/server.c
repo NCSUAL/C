@@ -60,26 +60,30 @@ int main(int argc, char *argv[]){
 	printf("listen function error\n");
 	}
 	else{
-	printf("wait...\n"); 
+	printf("server Open!\n"); 
 	}
 
 	//클라이언트 요청 수락
 
 	//클라이언트 ipv4주소
 	struct sockaddr_in client_server;
+	
 	//sockaddr_in 사이즈전달 -> socklen_t가 주소길이를 나타내는 데 특화됨
 	socklen_t client_server_size = sizeof(client_server);
 
 	//클라이언트 소켓 & 요청 허락
 	//sockaddr로 형변환 시켜줘야함
+	for(;;){
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
 	//클라이언트 소켓 유효성 검사
 	if(client_socket == -1){
 	printf("accept_error\n");
 	}
+	
 	else{
 	printf("connect complete\n");
+	}
 	}
 }
 
