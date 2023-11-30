@@ -85,9 +85,9 @@ int main(int argc, char *argv[]){
 	printf("accept_error\n");
 	}
 	
-	else{
+else{
 	printf("connect complete\n");
-	}
+	
 	
 //클라이언트 연결 성공
 	
@@ -95,7 +95,8 @@ int main(int argc, char *argv[]){
 	char number[2];
 	int Recv = recv(client_socket,number,2,0);
 	number[Recv] = '\0';
-	printf("%s",number);
+	printf("%s\n",number);
+	printf("%s\n"number[1]);
 	if(number[1] =='0'){
 		//password
 
@@ -113,7 +114,7 @@ int main(int argc, char *argv[]){
 	else{
 		
 	} 
-	
+}
 	}
 }
 
