@@ -100,7 +100,7 @@ else{
 
 		int Rand = (rand()%10000)+1;
 		
-		printf("%d",Rand);
+		printf("%d\n",Rand);
 		char Char_Rand[5];
 		
 		//integer to ascii
