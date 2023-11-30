@@ -95,7 +95,7 @@ int main(int argc, char *argv[]){
 	char number[2];
 	int Recv = recv(client_socket,number,sizeof(number),0);
 	number[Recv] = '\0';
-	if(number[1]=='0'){
+	if(number =='0'){
 		//password
 		printf("1");
 		int Rand = (rand()%10000)+1;
