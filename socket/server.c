@@ -77,6 +77,7 @@ int main(int argc, char *argv[]){
 	//클라이언트 소켓 & 요청 허락
 	//sockaddr로 형변환 시켜줘야함
 	for(;;){
+		
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
 	//클라이언트 소켓 유효성 검사
@@ -88,10 +89,12 @@ int main(int argc, char *argv[]){
 	printf("connect complete\n");
 	}
 	
+//클라이언트 연결 성공
 	
-	//메세지 주기
-	char message[Buffer] = "22222222222222";
-	send(client_socket,message , strlen(message),0 ); 
+	//random 인지 아닌지 
+	char number[2];
+	read(Sock,number,2);
+	printf("%s",number);
 	
 	}
 }
