@@ -10,7 +10,7 @@
 //버퍼 사이즈 정의 
 #define Buffer 128
 int main(int argc, char *argv[]){
-	printf("%s",sqlite3_libversion());
+	printf("%s\n",sqlite3_libversion());
 	
 	//인자 2개 인지 확인
 	if(argc!=2){
@@ -66,8 +66,6 @@ int main(int argc, char *argv[]){
 	printf("server Open!\n"); 
 	}
 
-	//클라이언트 요청 수락
-
 	//클라이언트 ipv4주소
 	struct sockaddr_in client_server;
 	
@@ -87,6 +85,8 @@ int main(int argc, char *argv[]){
 	else{
 	printf("connect complete\n");
 	}
+	
+	
 	}
 }
 
