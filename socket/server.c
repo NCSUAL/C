@@ -92,8 +92,8 @@ int main(int argc, char *argv[]){
 //클라이언트 연결 성공
 	
 	//random 인지 아닌지 
-	char number[2];
-	read(Sock,number,2);
+	char *number[];
+	recv(client_socket,number,2,0);
 	printf("%s",number);
 	
 	}
