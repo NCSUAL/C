@@ -97,6 +97,7 @@ int main(int argc, char *argv[]){
 	number[Recv] = '\0';
 	if(number[1]=='0'){
 		//password
+		printf("1");
 		int Rand = (rand()%10000)+1;
 		
 		printf("%d",Rand);
