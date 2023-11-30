@@ -10,6 +10,8 @@
 //버퍼 사이즈 정의 
 #define Buffer 128
 int main(int argc, char *argv[]){
+	printf("%s",sqlite3_libversion());
+	
 	//인자 2개 인지 확인
 	if(argc!=2){
 		fprintf(stderr,"inja need 2\n");
