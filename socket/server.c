@@ -89,7 +89,7 @@ int main(int argc, char *argv[]){
 	}
 	
 	//소켓 닫기
-	closesocket(Sock);
+	close(Sock);
 	
 	//메세지 주기
 	char message[Buffer] = "hellohellohello";
