@@ -36,6 +36,15 @@ int main(int argc, char *argv[]){
 	else{
 	printf("socket create\n");
 	}
+	
+	//소켓 설정 -> 재사용 개발 중에만 사용할 예정 
+	int option =1;
+	if(setsockopt(Sock,setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(option))==-1){
+		printf("setting error\n");
+	}
+	else{
+		printf("setting complete\n");
+	}
 
 	//네트워크 정보 입력 - 서버
 	struct sockaddr_in addr_server;
@@ -76,8 +85,7 @@ int main(int argc, char *argv[]){
 
 	//클라이언트 소켓 & 요청 허락
 	//sockaddr로 형변환 시켜줘야함
-	for(;;){
-		
+	for(;;){ 
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
 	//클라이언트 소켓 유효성 검사
