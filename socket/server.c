@@ -96,13 +96,16 @@ int main(int argc, char *argv[]){
 	int Recv = recv(client_socket,number,sizeof(number),0);
 	number[Recv] = '\0';
 	if(number[1]=='0'){
+		//password
 		int Rand = (rand()%10000)+1;
+		
 		char Char_Rand[5];
 		
 		//integer to ascii
-		snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
+		snprintf(Char_Rand,strlen(Char_Rand),"%d",Rand);
 		
 		send(client_socket,Char_Rand,sizeof(Char_Rand),0);
+		
 	}
 	else{
 		
