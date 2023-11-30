@@ -88,8 +88,6 @@ int main(int argc, char *argv[]){
 	printf("connect complete\n");
 	}
 	
-	//소켓 닫기
-	close(Sock);
 	
 	//메세지 주기
 	char message[Buffer] = "hellohellohello";
