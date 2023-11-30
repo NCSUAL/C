@@ -91,12 +91,22 @@ int main(int argc, char *argv[]){
 	
 //클라이언트 연결 성공
 	
-	//random 인지 아닌지 
+	//방입장 -> 1 방생성 -> 0 
 	char number[2];
-	int Recv = recv(client_socket,number,2,0);
+	int Recv = recv(client_socket,number,sizeof(number),0);
 	number[Recv] = '\0';
-	printf("%s",number);
-	
+	if(number[1]=='0'){
+		int Rand = (rand()%10000)+1;
+		char Char_Rand[5];
+		
+		//integer to ascii
+		snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
+		
+		send(client_socket,Char_Rand,sizeof(Char_Rand),0);
+	}
+	else{
+		
+	} 
 	
 	}
 }
