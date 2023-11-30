@@ -102,9 +102,9 @@ int main(int argc, char *argv[]){
 		char Char_Rand[5];
 		
 		//integer to ascii
-		snprintf(Char_Rand,strlen(Char_Rand),"%d",Rand);
+		snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
 		
-		send(client_socket,Char_Rand,sizeof(Char_Rand),0);
+		send(client_socket,Char_Rand,strlen(Char_Rand),0);
 		
 	}
 	else{
