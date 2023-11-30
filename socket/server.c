@@ -37,7 +37,9 @@ int main(int argc, char *argv[]){
 	printf("socket create\n");
 	}
 	
-	//소켓 설정 -> 재사용 개발 중에만 사용할 예정 
+	
+	
+	//소켓 설정 -> 포트 재사용 -> 개발 중에만 사용할 예정 
 	int option =1;
 	if(setsockopt(Sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option))==-1){
 		printf("setting error\n");
@@ -46,13 +48,15 @@ int main(int argc, char *argv[]){
 		printf("setting complete\n");
 	}
 
+
+
 	//네트워크 정보 입력 - 서버
 	struct sockaddr_in addr_server;
 	
 	//초기화
 	memset(&addr_server,0,sizeof(addr_server));
 
-	//string -> integer
+	//ASCII to integer
 	int port = atoi(argv[1]);
 	
 	//정보 입력
@@ -69,9 +73,9 @@ int main(int argc, char *argv[]){
 	printf("bind complete\n");
 	}
 
-	//리슨 -> 클라이언트 요청을 받음
+	//리슨, 유효성 검사 -> 클라이언트 요청을 받음
 	if(listen(Sock,43)==-1){
-	printf("listen function error\n");
+	printf("listen error\n");
 	}
 	else{
 	printf("server Open!\n"); 
@@ -99,17 +103,18 @@ else{
 	
 //클라이언트 연결 성공
 	
-	//방입장 -> 1 방생성 -> 0 
+	//방입장 -> 1
+	//방생성 -> 0 
 	char number[2];
 	int Recv = recv(client_socket,number,sizeof(number),0);
 	number[1] = '\0';
 	if(number[0] =='0'){
+		
 		//password
-
 		int Rand = (rand()%10000)+1;
 		
 		printf("%d\n",Rand);
-		char Char_Rand[5];
+		char Char_Rand[6];
 		
 		//integer to ascii
 		snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
