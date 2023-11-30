@@ -90,7 +90,7 @@ int main(int argc, char *argv[]){
 	
 	
 	//메세지 주기
-	char message[Buffer] = "22222222222222";
+	char message[] = "22222222222222";
 	send(client_socket,message , strlen(message),0 ); 
 	
 	}
