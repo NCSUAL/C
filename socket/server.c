@@ -96,7 +96,7 @@ else{
 	int Recv = recv(client_socket,number,2,0);
 	number[Recv] = '\0';
 	printf("%s\n",number);
-	printf("%c\n"number[1]);
+	printf("%c\n",number[1]);
 	if(number[1] =='0'){
 		//password
 
