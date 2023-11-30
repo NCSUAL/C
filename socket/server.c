@@ -6,6 +6,9 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <rand.h>
+#include <time.h>
+
 
 //버퍼 사이즈 정의 
 #define Buffer 128
@@ -86,6 +89,12 @@ int main(int argc, char *argv[]){
 	printf("connect complete\n");
 	}
 	
+	//소켓 닫기
+	closesocket(Sock);
+	
+	//메세지 주기
+	char[Buffer] message = "ㅎㅇ";
+	send(client_socket,message , strlen(message) , 0); 
 	
 	}
 }
