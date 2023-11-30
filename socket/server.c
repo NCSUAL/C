@@ -99,6 +99,7 @@ int main(int argc, char *argv[]){
 		//password
 		int Rand = (rand()%10000)+1;
 		
+		printf("%d",Rand);
 		char Char_Rand[5];
 		
 		//integer to ascii
