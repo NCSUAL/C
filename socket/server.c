@@ -93,9 +93,10 @@ int main(int argc, char *argv[]){
 	
 	//random 인지 아닌지 
 	char number;
+	printf("1");
 	int Recv = read(client_socket,&number,1);
 	printf("%c",number);
-	
+	printf("1");
 	}
 }
 
