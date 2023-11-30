@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
 	
 	//random 인지 아닌지 
 	char number[2];
-	read(client_socket,number,2);
+	read(Sock,number,2);
 	printf("%s",number);
 	
 	}
