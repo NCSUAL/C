@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
 	
 	//소켓 설정 -> 재사용 개발 중에만 사용할 예정 
 	int option =1;
-	if(setsockopt(Sock,setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(option)))==-1){
+	if(setsockopt(Sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option))==-1){
 		printf("setting error\n");
 	}
 	else{
