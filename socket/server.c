@@ -93,7 +93,7 @@ else{
 	
 	//规涝厘 -> 1 规积己 -> 0 
 	char number[2];
-	int Recv = recv(client_socket,number,2,0);
+	int Recv = recv(client_socket,number,sizeof(number),0);
 	number[1] = '\0';
 	if(number[0] =='0'){
 		//password
