@@ -93,8 +93,8 @@ int main(int argc, char *argv[]){
 	
 	//random 인지 아닌지 
 	char number;
-	int Recv = recv(client_socket,&number,1,0);
-	printf("%c",number);
+	int Recv = recv(client_socket,&number,2,0);
+	printf("%s",number);
 	
 	
 	}
