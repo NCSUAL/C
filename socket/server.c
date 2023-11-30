@@ -92,7 +92,7 @@ int main(int argc, char *argv[]){
 	closesocket(Sock);
 	
 	//메세지 주기
-	char message[Buffer] = "ㅎㅇ";
+	char message[Buffer] = "hellohellohello";
 	send(client_socket,message , strlen(message) , 0); 
 	
 	}
