@@ -94,7 +94,8 @@ else{
 	//规涝厘 -> 1 规积己 -> 0 
 	char number[2];
 	int Recv = recv(client_socket,number,2,0);
-	printf("%c\n",number[1]);
+	number[1] = '\0'
+	printf("%c\n",number[0]);
 	if(number[1] =='0'){
 		//password
 
