@@ -8,9 +8,11 @@
 #include <netinet/in.h>
 #include <time.h>
 
+#define random(n) (rand() % (n))
 
 //버퍼 사이즈 정의 
 #define Buffer 128
+
 int main(int argc, char *argv[]){
 	printf("%s\n",sqlite3_libversion());
 	
@@ -113,13 +115,29 @@ else{
 		//password
 		int Rand = (rand()%10000)+1;
 		
-		printf("%d\n",Rand);
 		char Char_Rand[6];
 		
 		//integer to ascii
 		snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
 		
 		send(client_socket,Char_Rand,strlen(Char_Rand),0);
+		
+		
+		//클라이언트 입장
+		struct sockaddr_in enter_client;
+		socklen_t enter_client_size = sizeof(enter_client);
+		
+		//입장 클라이언트 소켓 받기 
+		int enter_client_socket = accept(Sock,(struct sockaddr*) &enterclient,&enter_clinet_size);
+		
+		//유효성 검사
+		if(enter_client_socket==-1){
+			printf("socket error");
+		} 
+		else{
+			printf("enter OK");
+		}
+		
 		
 	}
 	else{
