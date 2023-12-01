@@ -122,7 +122,7 @@ else{
 		
 		send(client_socket,Char_Rand,strlen(Char_Rand),0);
 		
-		
+		/**
 		//클라이언트 입장
 		struct sockaddr_in enter_client;
 		socklen_t enter_client_size = sizeof(enter_client);
@@ -137,7 +137,7 @@ else{
 		else{
 			printf("enter OK");
 		}
-		
+		**/
 		
 	}
 	else{
