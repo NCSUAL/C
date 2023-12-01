@@ -128,7 +128,7 @@ else{
 		socklen_t enter_client_size = sizeof(enter_client);
 		
 		//입장 클라이언트 소켓 받기 
-		int enter_client_socket = accept(Sock,(struct sockaddr*) &enterclient,&enter_clinet_size);
+		int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
 		//유효성 검사
 		if(enter_client_socket==-1){
