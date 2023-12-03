@@ -127,20 +127,20 @@ else{
 		socklen_t enter_client_size = sizeof(enter_client);
 		
 		//시간 제한
-		fd_set file_descriptor_set;
+		fd_set file_descriptor;
 		
 		//memset 파일 디스크립터 버전 
-		FD_ZERO(&file_descriptor_set);
+		FD_ZERO(&file_descriptor);
 		
 		//fds에 소켓 넣기 
-		FD_SET(Sock,&file_descriptor_set); 
+		FD_SET(Sock,&file_descriptor); 
 		
 		//타임벨류 구조체
 		struct timeval timeout;
 		timeout.tv_sec = 10; //끝 10 
 		timeout.tv_usec = 0; //시작 0
 		
-		int result = select(Sock+1,&file_descriptor_set,NULL,NULL,&fds);
+		int result = select(Sock+1,&file_descriptor,NULL,NULL,&fds);
 		 
 		 //select 유효성 
 if(result >0){
