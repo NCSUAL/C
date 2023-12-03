@@ -133,7 +133,7 @@ else{
 		FD_ZERO(&file_descriptor_set);
 		
 		//fds에 소켓 넣기 
-		FD_SET(Sock,&fds); 
+		FD_SET(Sock,&file_descriptor_set); 
 		
 		//타임벨류 구조체
 		struct timeval timeout;
