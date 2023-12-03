@@ -160,7 +160,7 @@ for(;;){
 				send(client_socket,"1",1,0);
 				
 				//방 입장 클라이언트 
-				send(enter_client_socket,"OK",1,0);
+				send(enter_client_socket,"OK",2,0);
 			}
 			//타임아웃 
 			else if(result==0){
