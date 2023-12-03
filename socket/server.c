@@ -153,17 +153,20 @@ for(;;){
 					printf("socket error");
 				} 
 				else{
-					printf("enter OK");
+					printf("enter OK\n");
 				}
 		
 				//접속 성공할시 
 				send(client_socket,"1",1,0);
+				
+				//방 입장 클라이언트 
+				send(enter_client,"OK",1,0);
 			}
+			//타임아웃 
 			else if(result==0){
 				
 				//타임 아웃시 
 				send(client_socket,"0",1,0);
-				close(client_socket);
 				
 			}
 			
