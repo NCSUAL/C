@@ -91,77 +91,82 @@ int main(int argc, char *argv[]){
 
 	//클라이언트 소켓 & 요청 허락
 	//sockaddr로 형변환 시켜줘야함
-	for(;;){ 
+for(;;){ 
+
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
 	//클라이언트 소켓 유효성 검사
 	if(client_socket == -1){
-	printf("accept_error\n");
+		printf("accept_error\n");
 	}
 	
-else{
-	printf("connect complete\n");
+	else{
+		printf("connect complete\n");
 	
 	
-//클라이언트 연결 성공
+		//클라이언트 연결 성공
 	
-	//방입장 -> 1
-	//방생성 -> 0 
-	char number[2];
-	int Recv = recv(client_socket,number,sizeof(number),0);
-	number[1] = '\0';
-	if(number[0] =='0'){
+		//방입장 -> 1
+		//방생성 -> 0 
+		char number[2];
+		int Recv = recv(client_socket,number,sizeof(number),0);
+		number[1] = '\0';
+		if(number[0] =='0'){
 		
-		//password
-		int Rand = (rand()%10000)+1;
+			//password
+			int Rand = (rand()%10000)+1;
 		
-		char Char_Rand[6];
+			char Char_Rand[6];
 		
-		//integer to ascii
-		snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
+			//integer to ascii
+			snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
 		
-		send(client_socket,Char_Rand,strlen(Char_Rand),0);
+			send(client_socket,Char_Rand,strlen(Char_Rand),0);
 		
-		//클라이언트2 입장
-		struct sockaddr_in enter_client;
-		socklen_t enter_client_size = sizeof(enter_client);
+			//클라이언트2 입장
+			struct sockaddr_in enter_client;
+			socklen_t enter_client_size = sizeof(enter_client);
 		
-		//시간 제한
-		fd_set file_descriptor;
+			//시간 제한
+			fd_set file_descriptor;
 		
-		//memset 파일 디스크립터 버전 
-		FD_ZERO(&file_descriptor);
+			//memset 파일 디스크립터 버전 
+			FD_ZERO(&file_descriptor);
 		
-		//fds에 소켓 넣기 
-		FD_SET(Sock,&file_descriptor); 
+			//fds에 소켓 넣기 
+			FD_SET(Sock,&file_descriptor); 
 		
-		//타임벨류 구조체
-		struct timeval timeout;
-		timeout.tv_sec = 10; //끝 10 
-		timeout.tv_usec = 0; //시작 0
+			//타임벨류 구조체
+			struct timeval timeout;
+			timeout.tv_sec = 10; //끝 10 
+			timeout.tv_usec = 0; //시작 0
 		
-		int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
+			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
 		 
-		 //select 유효성 
-if(result >0){
-		//입장 클라이언트 소켓 받기 
-		int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
+		 	//select 유효성 
+			if(result >0){
+				//입장 클라이언트 소켓 받기 
+				int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
-		//유효성 검사
-		if(enter_client_socket==-1){
-			printf("socket error");
-		} 
-		else{
-			printf("enter OK");
-		}
+				//유효성 검사
+				if(enter_client_socket==-1){
+					printf("socket error");
+				} 
+				else{
+					printf("enter OK");
+				}
 		
-		//접속 성공할시 
-		send(client_socket,"1",1,0);
-}
-		else if(result==0){
-			//타임 아웃시 
-			send(client_socket,"0",1,0);
-		}
+				//접속 성공할시 
+				send(client_socket,"1",1,0);
+			}
+			else if(result==0){
+				
+				//타임 아웃시 
+				send(client_socket,"0",1,0);
+				close(client_socket);
+				
+			}
+			
 		else{
 			printf("select error");
 		}
@@ -169,12 +174,14 @@ if(result >0){
 		
 	}
 	
-	
+	//방입장 
 	else{
 		
 	} 
 
-}
 	}
+	
+}
+
 }
 
