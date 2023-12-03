@@ -140,7 +140,7 @@ else{
 		timeout.tv_sec = 10; //끝 10 
 		timeout.tv_usec = 0; //시작 0
 		
-		int result = select(Sock+1,&file_descriptor,NULL,NULL,&fds);
+		int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
 		 
 		 //select 유효성 
 if(result >0){
