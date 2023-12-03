@@ -166,7 +166,7 @@ for(;;){
 			else if(result==0){
 				
 				//е╦юс ╬ф©Т╫ц 
-				send(client_socket,"0",1,0);
+				send(enter_client_socket,"0",1,0);
 				
 			}
 			
