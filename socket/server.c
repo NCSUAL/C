@@ -122,11 +122,28 @@ else{
 		
 		send(client_socket,Char_Rand,strlen(Char_Rand),0);
 		
-		/**
-		//클라이언트 입장
+		//클라이언트2 입장
 		struct sockaddr_in enter_client;
 		socklen_t enter_client_size = sizeof(enter_client);
 		
+		//시간 제한
+		fd_set file_descriptor_set;
+		
+		//memset 파일 디스크립터 버전 
+		FD_ZERO(&file_descriptor_set);
+		
+		//fds에 소켓 넣기 
+		FD_SET(Sock,&fds); 
+		
+		//타임벨류 구조체
+		struct timeval timeout;
+		timeout.tv_sec = 10; //끝 10 
+		timeout.tv_usec = 0; //시작 0
+		
+		int result = select(Sock+1,&fds,NULL,NULL,&fds);
+		 
+		 //select 유효성 
+if(result >0){
 		//입장 클라이언트 소켓 받기 
 		int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
@@ -137,12 +154,26 @@ else{
 		else{
 			printf("enter OK");
 		}
-		**/
+		
+		//접속 성공할시 
+		send(client_socket,"1",1,0);
+}
+		else if(result==0){
+			//타임 아웃시 
+			send(client_socket,"0",1,0);
+		}
+		else{
+			printf("select error");
+		}
+		
 		
 	}
+	
+	
 	else{
 		
 	} 
+
 }
 	}
 }
