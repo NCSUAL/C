@@ -161,6 +161,23 @@ for(;;){
 				
 				//방 입장 클라이언트 
 				send(enter_client_socket,"OK",2,0);
+				
+				//게임
+				
+				while(1){
+		
+					//방개설 데이터 받기
+					int client_socket_data[12][22];
+					recv(client_server,(char*)client_server,sizeof(client_socket_data),0);
+					
+					for(int a=0; a<12;a++){
+						for(int b=0; b<12;b++){
+							printf("%d",client_socket_data[a][b]);
+						}
+					}
+				}
+				
+				 
 			}
 			//타임아웃 
 			else if(result==0){
