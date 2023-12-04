@@ -167,7 +167,13 @@ for(;;){
 				//클라이언트 
 				int client_socket_data[12][22];
 				
+				//enter 클라이언트
+				int enter_client_socket_data[12][22];
+				while(1){
+					
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,sizeof(client_socket_data),0);
+				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,sizeof(enter_client_socket_data),0);
+				
 				
 				for(int a=0; a<12; a++){
 					for(int b=0; b<22;b++){
@@ -175,7 +181,16 @@ for(;;){
 					}
 					printf("\n");
 				}
-				 
+				
+				for(int a=0; a<12; a++){
+					for(int b=0; b<22;b++){
+						printf("%d",enter_client_socket_data[a][b]);
+					}
+					printf("\n");
+				}
+				
+			}
+			
 			}
 			//타임아웃 
 			else if(result==0){
