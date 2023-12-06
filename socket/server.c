@@ -175,9 +175,16 @@ for(;;){
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,12*22 * sizeof(int),0);
 				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,12*22 * sizeof(int),0);
 				
+				for(int a=0; a<12;a++){
+					for(int b=0; b<22;b++){
+						printf("%d",client_socket_data[a][b]);
+					}
+				}
+				/**
 				send(enter_client_socket,(char *)client_socket_data,12*22 * sizeof(int),0);
 				
 				send(client_socket_data_result,(char *)enter_client_socket_data,12*22 * sizeof(int),0);
+				*/
 			}
 			
 			}
