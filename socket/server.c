@@ -179,6 +179,7 @@ for(;;){
 					for(int b=0; b<22;b++){
 						printf("%d",client_socket_data[a][b]);
 					}
+					printf("\n");
 				}
 				/**
 				send(enter_client_socket,(char *)client_socket_data,12*22 * sizeof(int),0);
