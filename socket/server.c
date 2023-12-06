@@ -177,9 +177,7 @@ for(;;){
 				
 				printf("%ld",sizeof(client_socket_data));
 				
-				send(client_socket,(char *)enter_client_socket_data,12*22 * sizeof(int),0);
 				
-				send(enter_client_socket,(char *)client_socket_data,12*22 * sizeof(int),0);
 				
 			}
 			
