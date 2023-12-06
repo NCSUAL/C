@@ -175,7 +175,7 @@ for(;;){
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,12*22 * sizeof(int),0);
 				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,12*22 * sizeof(int),0);
 				
-				printf("%d",sizeof(client_socket_data));
+				printf("%ld",sizeof(client_socket_data));
 				
 				send(client_socket,(char *)enter_client_socket_data,12*22 * sizeof(int),0);
 				
