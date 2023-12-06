@@ -177,7 +177,7 @@ for(;;){
 				
 				send(enter_client_socket,(char *)client_socket_data,12*22 * sizeof(int),0);
 				
-				send(client_socket_data_result,(char *)enter_client_socket_data_result,12*22 * sizeof(int),0);
+				send(client_socket_data_result,(char *)enter_client_socket_data,12*22 * sizeof(int),0);
 			}
 			
 			}
