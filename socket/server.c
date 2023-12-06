@@ -175,9 +175,9 @@ for(;;){
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,sizeof(client_socket_data),0);
 				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,sizeof(enter_client_socket_data),0);
 				
-				send(enter_client_socket,(char *)client_socket_data,sizeof(client_socket_data),0);
+				send(enter_client_socket,client_socket_data,sizeof(client_socket_data),0);
 				
-				send(client_socket_data_result,(char *)enter_client_socket_data_result,sizeof(enter_client_socket_data_result),0);
+				send(client_socket_data_result,enter_client_socket_data_result,sizeof(enter_client_socket_data_result),0);
 			}
 			
 			}
