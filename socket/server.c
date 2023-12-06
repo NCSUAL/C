@@ -172,8 +172,8 @@ for(;;){
 				
 				while(1){
 					
-				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,12*22 * sizeof(int),0);
-				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,12*22 * sizeof(int),0);
+				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,1057,0);
+				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,1057,0);
 				
 				printf("%ld",sizeof(client_socket_data));
 				
