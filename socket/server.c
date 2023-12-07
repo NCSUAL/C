@@ -141,7 +141,7 @@ for(;;){
 			timeout.tv_sec = 10; //끝 10 
 			timeout.tv_usec = 0; //시작 0
 		
-			int result = 1;//select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
+			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
 		 
 		 	//select 유효성 
 			if(result >0){
@@ -173,14 +173,18 @@ for(;;){
 				while(1){
 					
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,sizeof(client_socket_data),0);
-				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,sizeof(enter_client_socket_data),0);
 				
-				for(int a=0; a<12;a++){
+					for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
 						printf("%d",client_socket_data[a][b]);
 					}
 					printf("\n");
 				}
+				
+				
+				send(enter_client_socket,(char *)client_socket_data,sizeof(client_socket_data),0);
+				
+				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,sizeof(enter_client_socket_data),0);
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
@@ -188,8 +192,9 @@ for(;;){
 					}
 					printf("\n");
 				}
+				
 				send(client_socket,(char *)enter_client_socket_data,sizeof(enter_client_socket_data),0);
-				send(enter_client_socket,(char *)client_socket_data,sizeof(client_socket_data),0);
+			
 				
 			
 			}
