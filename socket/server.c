@@ -164,19 +164,20 @@ for(;;){
 				
 				//게임
 				
+				
+				while(1){
+					
 				//클라이언트 
 				int client_socket_data[12][22];
 				
 				//enter 클라이언트
 				int enter_client_socket_data[12][22];
-				
-				while(1){
 					
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,1057,0);
 				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,1057,0);
 				
-				
-				
+				send(client_socket,(char *)enter_client_socket_data,1057,0);
+				send(enter_client_socket,(char *)client_socket_data,1057,0);
 				
 			}
 			
