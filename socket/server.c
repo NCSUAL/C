@@ -179,19 +179,6 @@ for(;;){
 				send(client_socket,(char *)enter_client_socket_data,1056,0);
 				send(enter_client_socket,(char *)client_socket_data,1056,0);
 				
-					for (int x = 0; x < 12; x++) {
-				for (int y = 0; y < 22; y++) {
-					printf("%d",enter_client_socket_data[x][y]);
-				}
-				printf("\n");
-			}
-			
-				for (int x = 0; x < 12; x++) {
-				for (int y = 0; y < 22; y++) {
-					printf("%d",client_socket_data[x][y]);
-				}
-				printf("\n");
-			}
 			
 			}
 			
