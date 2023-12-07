@@ -176,6 +176,20 @@ for(;;){
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,1056,0);
 				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,1056,0);
 				
+				for(int a=0; a<12;a++){
+					for(int b=0; b<12;b++){
+						client_socket_data[a][b] = ntohs(client_socket_data[a][b]);
+						enter_client_socket_data[a][b] = ntohs(enter_client_socket_data[a][b]);
+					}
+				}
+				
+				for(int a=0; a<12;a++){
+					for(int b=0; b<12;b++){
+						client_socket_data[a][b] = htons(client_socket_data[a][b]);
+						enter_client_socket_data[a][b] = htons(enter_client_socket_data[a][b]);
+					}
+				}
+				
 				send(client_socket,(char *)enter_client_socket_data,1056,0);
 				send(enter_client_socket,(char *)client_socket_data,1056,0);
 				
