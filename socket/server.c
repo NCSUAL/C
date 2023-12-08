@@ -146,7 +146,7 @@ for(;;){
 			*/
 		 
 		 	//select 유효성 
-			if(result >0){
+			if(1){
 				//입장 클라이언트 소켓 받기 
 				int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
@@ -200,7 +200,7 @@ for(;;){
 			
 			}
 			//타임아웃 
-			else if(result==0){
+			else if(0){
 				
 				//타임 아웃시 
 				send(client_socket,"0",1,0);
