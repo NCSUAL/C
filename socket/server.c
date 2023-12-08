@@ -180,31 +180,7 @@ for(;;){
 			
 				send(client_socket,(char *)enter_client_socket_data,sizeof(enter_client_socket_data),0);
 				
-				
-				//brick and rot
-				int client_brick_rot_data[2];
-				int client_brick_rot = recv(client_socket,(char *)client_brick_rot_data,sizeof(client_brick_rot_data),0);
-				
-				//유효성
-				if(client_brick_rot==-1){
-					printf("recv Error");
-					exit(0);
-				} 
-				
-				int enter_client_brick_rot_data[2];
-				int enter_client_brick_rot = recv(enter_client_socket,(char *)enter_client_brick_rot_data,sizeof(enter_client_brick_rot_data),0);
-				
-				//유효성 
-				if(enter_client_brick_rot==-1){
-					printf("recv Error");
-					exit(0);
 				}
-				
-				send(client_socket,(char *)enter_client_brick_rot_data,sizeof(enter_client_brick_rot_data),0);
-				send(enter_client_socket,(char *)client_brick_rot_data,sizeof(client_brick_rot_data),0);
-				
-				
-			}
 			
 			}
 			//타임아웃 
