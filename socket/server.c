@@ -127,6 +127,7 @@ for(;;){
 			struct sockaddr_in enter_client;
 			socklen_t enter_client_size = sizeof(enter_client);
 		
+		/**
 			//시간 제한
 			fd_set file_descriptor;
 		
@@ -142,6 +143,7 @@ for(;;){
 			timeout.tv_usec = 0; //시작 0
 		
 			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
+			*/
 		 
 		 	//select 유효성 
 			if(result >0){
