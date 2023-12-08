@@ -174,29 +174,36 @@ for(;;){
 					
 				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,sizeof(client_socket_data),0);
 				
-					for(int a=0; a<12;a++){
-					for(int b=0; b<22;b++){
-						printf("%d",client_socket_data[a][b]);
-					}
-					printf("\n");
-				}
-				
-				
 				send(enter_client_socket,(char *)client_socket_data,sizeof(client_socket_data),0);
 				
 				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,sizeof(enter_client_socket_data),0);
+			
+				send(client_socket,(char *)enter_client_socket_data,sizeof(enter_client_socket_data),0);
 				
-				for(int a=0; a<12;a++){
-					for(int b=0; b<22;b++){
-						printf("%d",enter_client_socket_data[a][b]);
-					}
-					printf("\n");
+				
+				//brick and rot
+				int client_brick_rot_data[2];
+				int client_brick_rot = recv(client_socket,(char *)client_brick_rot_data,sizeof(client_brick_rot_data),0);
+				
+				//유효성
+				if(client_brick_rot==-1){
+					printf("recv Error");
+					exit(0);
+				} 
+				
+				int enter_client_brick_rot_data[2];
+				int enter_client_brick_rot = recv(enter_client_socket,(char *)enter_client_brick_rot_data,sizeof(enter_client_brick_rot_data),0);
+				
+				//유효성 
+				if(enter_client_brick_rot==-1){
+					printf("recv Error");
+					exit(0);
 				}
 				
-				send(client_socket,(char *)enter_client_socket_data,sizeof(enter_client_socket_data),0);
-			
+				send(client_socket,(char *)enter_client_brick_rot_data,sizeof(enter_client_brick_rot_data),0);
+				send(enter_client_socket,(char *)client_brick_rot_data,sizeof(client_brick_rot_data),0);
 				
-			
+				
 			}
 			
 			}
