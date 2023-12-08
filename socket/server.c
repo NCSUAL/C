@@ -184,12 +184,12 @@ for(;;){
 				//인스턴스 생성
 				Client_recv_data client_recv_data; 
 				//클라이언트 받을 구조체 초기화
-				memeset(&client_recv_data,0,sizeof(client_recv_data)); 
+				memset(&client_recv_data,0,sizeof(client_recv_data)); 
 				
 				//인스턴스 생성
 				Enter_client_recv_data enter_client_recv_data; 
 				//enter 클라이언트 받을 구조체 초기화 
-				memeset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
+				memset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
 				while(1){
 				
