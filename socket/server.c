@@ -180,14 +180,14 @@ for(;;){
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",client_socket_data[a][b])
+						printf("%d",client_socket_data[a][b]);
 					}
 					printf("\n");
 				}
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",enter_client_socket_data[a][b])
+						printf("%d",enter_client_socket_data[a][b]);
 					}
 					printf("\n");
 				}
