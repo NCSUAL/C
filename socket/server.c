@@ -19,14 +19,14 @@ typedef struct client_recv_data{
 	int recv_nx;
 	int recv_brick;
 	int recv_rot;
-} client_recv_data;
+} Client_recv_data;
 
 typedef struct enter_client_recv_data{
 	int recv_board[BW+2][BH+2];
 	int recv_nx;
 	int recv_brick;
 	int recv_rot;
-} enter_client_recv_data;
+} Enter_client_recv_data;
 
 int main(int argc, char *argv[]){
 	printf("%s\n",sqlite3_libversion());
@@ -181,9 +181,13 @@ for(;;){
 				
 				//게임
 				
+				//인스턴스 생성
+				Client_recv_data client_recv_data; 
 				//클라이언트 받을 구조체 초기화
 				memeset(&client_recv_data,0,sizeof(client_recv_data)); 
 				
+				//인스턴스 생성
+				Enter_client_recv_data enter_client_recv_data; 
 				//enter 클라이언트 받을 구조체 초기화 
 				memeset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
