@@ -17,6 +17,7 @@
 typedef struct client_recv_data{
 	int recv_board[BW+2][BH+2];
 	int recv_nx;
+	int recv_ny;
 	int recv_brick;
 	int recv_rot;
 } Client_recv_data;
@@ -24,6 +25,7 @@ typedef struct client_recv_data{
 typedef struct enter_client_recv_data{
 	int recv_board[BW+2][BH+2];
 	int recv_nx;
+	int recv_ny;
 	int recv_brick;
 	int recv_rot;
 } Enter_client_recv_data;
