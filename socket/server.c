@@ -7,11 +7,26 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <time.h>
-
+#define BW 10
+#define BH 20
 #define random(n) (rand() % (n))
 
 //버퍼 사이즈 정의
 #define Buffer 128
+
+typedef struct client_recv_data{
+	int recv_board[BW+2][BH+2];
+	int recv_nx;
+	int recv_brick;
+	int recv_rot;
+} client_recv_data;
+
+typedef struct enter_client_recv_data{
+	int recv_board[BW+2][BH+2];
+	int recv_nx;
+	int recv_brick;
+	int recv_rot;
+} enter_client_recv_data;
 
 int main(int argc, char *argv[]){
 	printf("%s\n",sqlite3_libversion());
@@ -166,46 +181,40 @@ for(;;){
 				
 				//게임
 				
-				//클라이언트 
-				int client_socket_data[12][22];
+				//클라이언트 받을 구조체 초기화
+				memeset(&client_recv_data,0,sizeof(client_recv_data)); 
 				
-				//enter 클라이언트
-				int enter_client_socket_data[12][22];
+				//enter 클라이언트 받을 구조체 초기화 
+				memeset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
 				while(1){
-					
-				int client_socket_data_result = recv(client_socket,(char * )client_socket_data,sizeof(client_socket_data),0);
 				
-				send(enter_client_socket,(char *)client_socket_data,sizeof(client_socket_data),0);
+				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				
-				int enter_client_socket_data_result = recv(enter_client_socket,(char*)enter_client_socket_data,sizeof(enter_client_socket_data),0);
+				int enter_client_socket_data_result = recv(enter_client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
+				
+				
+				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
+				send(client_socket,&enter_client_recv_datasizeof(enter_client_recv_data),0);
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",client_socket_data[a][b]);
+						printf("%d",client_recv_data.recv_board[a][b]);
 					}
 					printf("\n");
 				}
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",enter_client_socket_data[a][b]);
+						printf("%d",enter_client_recv_data.recv_board[a][b]);
 					}
 					printf("\n");
 				}
 				
-				send(client_socket,(char *)enter_client_socket_data,sizeof(enter_client_socket_data),0);
 				
 				}
 			
-			}
-			//타임아웃 
-			else if(0){
-				
-				//타임 아웃시 
-				send(client_socket,"0",1,0);
-				
-			}
+		}
 			
 		else{
 			printf("select error");
