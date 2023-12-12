@@ -16,18 +16,22 @@
 
 typedef struct client_recv_data{
 	int recv_board[BW+2][BH+2];
-	int recv_nx;
-	int recv_ny;
-	int recv_brick;
-	int recv_rot;
+	int send_nx;
+	int send_ny;
+	int send_brick;
+	int send_rot;
+	int recv_gameover;
+	int recv_score;
 } Client_recv_data;
 
 typedef struct enter_client_recv_data{
 	int recv_board[BW+2][BH+2];
-	int recv_nx;
-	int recv_ny;
-	int recv_brick;
-	int recv_rot;
+	int send_nx;
+	int send_ny;
+	int send_brick;
+	int send_rot;
+	int recv_gameover;
+	int recv_score;
 } Enter_client_recv_data;
 
 int main(int argc, char *argv[]){
