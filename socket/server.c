@@ -205,7 +205,7 @@ for(;;){
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",ntohl(client_recv_data.recv_board[a][b]);
+						printf("%d",ntohl(client_recv_data.recv_board[a][b]));
 					}
 					printf("\n");
 				}
