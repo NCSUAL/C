@@ -205,14 +205,14 @@ for(;;){
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",client_recv_data[a][b]);
+						printf("%d",client_recv_data.recv_board[a][b]);
 					}
 					printf("\n");
 				}
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",enter_client_recv_data[a][b]);
+						printf("%d",enter_client_recv_data.recv_board[a][b]);
 					}
 					printf("\n");
 				}
