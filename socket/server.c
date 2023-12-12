@@ -200,7 +200,7 @@ for(;;){
 				while(1){
 				
 				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
-				sleep(1);
+				sleep(3);
 				
 				int enter_client_socket_data_result = recv(enter_client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 				
