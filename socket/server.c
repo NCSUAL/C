@@ -63,7 +63,7 @@ int main(int argc, char *argv[]){
 	
 	
 	//소켓 설정 -> 포트 재사용 -> 개발 중에만 사용할 예정 
-	int option =1024 * 1024;
+	int option =12*22;
 	if(setsockopt(Sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option))==-1){
 		printf("setting error\n");
 	}
@@ -205,14 +205,14 @@ for(;;){
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",client_recv_data.recv_board[a][b]);
+						printf("%d",ntohl(client_recv_data.recv_board[a][b]);
 					}
 					printf("\n");
 				}
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",enter_client_recv_data.recv_board[a][b]);
+						printf("%d",ntohl(enter_client_recv_data.recv_board[a][b]));
 					}
 					printf("\n");
 				}
