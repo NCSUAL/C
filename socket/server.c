@@ -1,4 +1,3 @@
-#include <sqlite3.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <time.h>
+#include <pthread>
 #define BW 10
 #define BH 20
 #define random(n) (rand() % (n))
@@ -34,8 +34,12 @@ typedef struct enter_client_recv_data{
 	int recv_score;
 } Enter_client_recv_data;
 
+//뮤텍스 생성
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+	
+printf("mutex create\n");
+	
 int main(int argc, char *argv[]){
-	printf("%s\n",sqlite3_libversion());
 	
 	//인자 2개 인지 확인
 	if(argc!=2){
@@ -199,6 +203,7 @@ for(;;){
 				memset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
 				while(1){
+				pthread_mutex_lock(&lock);
 				
 				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				
@@ -222,7 +227,7 @@ for(;;){
 				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 				
-				
+				pthread_mutex_lock(&unlock);
 				}
 			
 		}
