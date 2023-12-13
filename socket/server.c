@@ -160,7 +160,7 @@ for(;;){
 			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
 		 
 		 	//select 유효성 
-			if(1){
+			if(result==0){
 				//입장 클라이언트 소켓 받기 
 				int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
@@ -192,18 +192,21 @@ for(;;){
 				
 				while(1){
 				
+				//데이터 교환 
 				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				
 				int enter_client_socket_data_result = recv(enter_client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
-				
+					
 				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
-				
+				//데이터 교환
 				}
 			
 		}
 			
 		else{
+			//시간초과 
+			send(client_socket,"0",1,0);
 			printf("select error");
 		}
 		
