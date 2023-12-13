@@ -202,6 +202,8 @@ for(;;){
 				//데이터 교환
 				
 				//게임 끝 
+				close(enter_client_socket);
+				close(client_socket);
 				}
 			
 		}
