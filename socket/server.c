@@ -37,8 +37,6 @@ typedef struct enter_client_recv_data{
 //뮤텍스 생성
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 	
-printf("mutex create\n");
-	
 int main(int argc, char *argv[]){
 	
 	//인자 2개 인지 확인
