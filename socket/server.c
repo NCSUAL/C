@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <time.h>
-#include <pthread>
+#include <pthread.h>
 #define BW 10
 #define BH 20
 #define random(n) (rand() % (n))
