@@ -201,7 +201,7 @@ for(;;){
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 				//데이터 교환
 				
-				if(client_recv_data.recv_gameover==1 && enter_client_recv_data.recv_gameover==1){
+				if(ntohl(client_recv_data.recv_gameover)==1 && ntohl(enter_client_recv_data.recv_gameover)==1){
 					//게임 끝 
 					//소켓 해제 
 					close(enter_client_socket);
