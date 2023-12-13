@@ -160,7 +160,7 @@ for(;;){
 			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
 		 
 		 	//select 유효성 
-			if(result==0){
+			if(result!=0){
 				//입장 클라이언트 소켓 받기 
 				int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
