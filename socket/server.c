@@ -227,7 +227,7 @@ for(;;){
 				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 				
-				pthread_mutex_lock(&unlock);
+				pthread_mutex_lock(&lock);
 				}
 			
 		}
