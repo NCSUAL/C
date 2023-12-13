@@ -34,8 +34,6 @@ typedef struct enter_client_recv_data{
 	int recv_score;
 } Enter_client_recv_data;
 
-//¹ÂÅØ½º »ý¼º
-pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 	
 int main(int argc, char *argv[]){
 	
@@ -201,7 +199,6 @@ for(;;){
 				memset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
 				while(1){
-				pthread_mutex_lock(&lock);
 				
 				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				
@@ -225,7 +222,6 @@ for(;;){
 				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 				
-				pthread_mutex_lock(&lock);
 				}
 			
 		}
