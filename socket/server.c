@@ -203,8 +203,10 @@ for(;;){
 				
 				if(client_recv_data.recv_gameover==1 && enter_client_recv_data.recv_gameover==1){
 					//霸烙 场 
+					//家南 秦力 
 					close(enter_client_socket);
 					close(client_socket);
+					break;
 				}
 				}
 			
