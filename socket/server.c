@@ -135,6 +135,7 @@ for(;;){
 		if(number[0] =='0'){
 		
 			//password
+			srand(time(NULL));
 			int Rand = (rand()%10000)+1;
 		
 			char Char_Rand[6];
