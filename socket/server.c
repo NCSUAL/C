@@ -201,9 +201,11 @@ for(;;){
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 				//데이터 교환
 				
-				//게임 끝 
-				close(enter_client_socket);
-				close(client_socket);
+				if(client_recv_data.recv_gameover==1 && enter_client_recv_data.recv_gameover==1){
+					//게임 끝 
+					close(enter_client_socket);
+					close(client_socket);
+				}
 				}
 			
 		}
