@@ -127,12 +127,6 @@ for(;;){
 	
 		//클라이언트 연결 성공
 	
-		//방입장 -> 1
-		//방생성 -> 0 
-		char number[2];
-		int Recv = recv(client_socket,number,sizeof(number),0);
-		number[1] = '\0';
-		if(number[0] =='0'){
 		
 			//password
 			srand(time(NULL));
@@ -149,7 +143,7 @@ for(;;){
 			struct sockaddr_in enter_client;
 			socklen_t enter_client_size = sizeof(enter_client);
 		
-		/**
+
 			//시간 제한
 			fd_set file_descriptor;
 		
@@ -165,7 +159,6 @@ for(;;){
 			timeout.tv_usec = 0; //시작 0
 		
 			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
-			*/
 		 
 		 	//select 유효성 
 			if(1){
@@ -230,13 +223,7 @@ for(;;){
 			printf("select error");
 		}
 		
-		
-	}
-	
-	//방입장 
-	else{
-		
-	} 
+		 
 
 	}
 	
