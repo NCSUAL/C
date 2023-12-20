@@ -15,25 +15,33 @@
 #define Buffer 128
 
 typedef struct client_recv_data{
-	int recv_board[BW+2][BH+2];
+	int send_board[BW+2][BH+2];
 	int send_nextBrick;
+	BOOL send_One_chance;
+   	int send_REMOVE_BRICK;
+   	int send_REMOVE_ROT;
+   	int send_speed;
 	int send_nx;
 	int send_ny;
 	int send_brick;
 	int send_rot;
-	int recv_gameover;
-	int recv_score;
+	int send_gameover;
+	int send_score;
 } Client_recv_data;
 
 typedef struct enter_client_recv_data{
-	int recv_board[BW+2][BH+2];
+	int send_board[BW+2][BH+2];
 	int send_nextBrick;
+	BOOL send_One_chance;
+   	int send_REMOVE_BRICK;
+   	int send_REMOVE_ROT;
+   	int send_speed;
 	int send_nx;
 	int send_ny;
 	int send_brick;
 	int send_rot;
-	int recv_gameover;
-	int recv_score;
+	int send_gameover;
+	int send_score;
 } Enter_client_recv_data;
 
 
