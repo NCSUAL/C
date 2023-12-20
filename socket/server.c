@@ -14,7 +14,8 @@
 #define Buffer 128
 
 typedef struct client_recv_data{
-	int recv_board[BW + 2][(BH + 2) *2];
+	int recv_board[BW+2][BH+2];
+
 	int send_nx;
 	int send_ny;
 	int send_brick;
@@ -24,7 +25,7 @@ typedef struct client_recv_data{
 } Client_recv_data;
 
 typedef struct enter_client_recv_data{
-	int recv_board[BW + 2][(BH + 2) *2];
+	int recv_board[BW+2][BH+2];
 	int send_nx;
 	int send_ny;
 	int send_brick;
