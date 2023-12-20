@@ -232,13 +232,6 @@ for(;;){
 			//시간초과 
 			send(client_socket,"0",1,0);
 			printf("select error");
-			
-			//게임 끝 
-			//소켓 해제 
-			close(enter_client_socket);
-			close(client_socket);
-			break;
-					
 		}
 		
 		 
