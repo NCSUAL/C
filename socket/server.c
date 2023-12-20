@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <pthread.h>
 #include <time.h>
 #define BW 10
 #define BH 20
@@ -15,6 +16,7 @@
 
 typedef struct client_recv_data{
 	int recv_board[BW+2][BH+2];
+	int send_nextBrick;
 	int send_nx;
 	int send_ny;
 	int send_brick;
@@ -25,6 +27,7 @@ typedef struct client_recv_data{
 
 typedef struct enter_client_recv_data{
 	int recv_board[BW+2][BH+2];
+	int send_nextBrick;
 	int send_nx;
 	int send_ny;
 	int send_brick;
@@ -33,7 +36,7 @@ typedef struct enter_client_recv_data{
 	int recv_score;
 } Enter_client_recv_data;
 
-	
+
 int main(int argc, char *argv[]){
 	
 	//인자 2개 인지 확인
@@ -190,6 +193,7 @@ for(;;){
 				//enter 클라이언트 받을 구조체 초기화 
 				memset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
+				
 				while(1){
 				
 				//데이터 교환 
@@ -209,6 +213,8 @@ for(;;){
 					break;
 				}
 				}
+				
+				
 			
 		}
 			
