@@ -7,7 +7,6 @@
 #include <netinet/in.h>
 #include <pthread.h>
 #include <time.h>
-#include <stdbool.h>
 #define BW 10
 #define BH 20
 #define random(n) (rand() % (n))
@@ -18,7 +17,7 @@
 typedef struct client_recv_data{
 	int send_board[BW+2][BH+2];
 	int send_nextBrick;
-	BOOL send_One_chance;
+	int send_One_chance;
    	int send_REMOVE_BRICK;
    	int send_REMOVE_ROT;
    	int send_speed;
@@ -33,7 +32,7 @@ typedef struct client_recv_data{
 typedef struct enter_client_recv_data{
 	int send_board[BW+2][BH+2];
 	int send_nextBrick;
-	BOOL send_One_chance;
+	int send_One_chance;
 	int send_REMOVE_BRICK;
    	int send_REMOVE_ROT;
    	int send_speed;
