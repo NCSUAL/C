@@ -140,17 +140,6 @@ for(;;){
 		//클라이언트 연결 성공
 	
 		
-			//password
-			srand(time(NULL));
-			int Rand = (rand()%10000)+1;
-		
-			char Char_Rand[6];
-		
-			//integer to ascii
-			snprintf(Char_Rand,sizeof(Char_Rand),"%d",Rand);
-		
-			send(client_socket,Char_Rand,sizeof(Char_Rand),0);
-		
 			//클라이언트2 입장
 			struct sockaddr_in enter_client;
 			socklen_t enter_client_size = sizeof(enter_client);
@@ -189,7 +178,7 @@ for(;;){
 				send(client_socket,"1",1,0);
 				
 				//방 입장 클라이언트 
-				send(enter_client_socket,"OK",2,0);
+				send(enter_client_socket,"1",2,0);
 				
 				//게임
 				
