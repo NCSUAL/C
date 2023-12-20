@@ -20,6 +20,7 @@ typedef struct client_recv_data{
 	int send_One_chance;
    	int send_REMOVE_BRICK;
    	int send_REMOVE_ROT;
+   	int send_PREESED_HOLD;
    	int send_speed;
 	int send_nx;
 	int send_ny;
@@ -35,6 +36,7 @@ typedef struct enter_client_recv_data{
 	int send_One_chance;
 	int send_REMOVE_BRICK;
    	int send_REMOVE_ROT;
+   	int send_PREESED_HOLD;
    	int send_speed;
 	int send_nx;
 	int send_ny;
