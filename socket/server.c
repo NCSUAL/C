@@ -202,13 +202,13 @@ for(;;){
 				
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",client_recv_data[0][a][b]);
+						printf("%d",client_recv_data.recv_board[0][a][b]);
 					}
 					printf("\n");
 				}
 				for(int a=0; a<12;a++){
 					for(int b=0; b<22;b++){
-						printf("%d",enter_client_recv_data[0][a][b]);
+						printf("%d",enter_client_recv_data.recv_board[0][a][b]);
 					}
 					printf("\n");
 				}
