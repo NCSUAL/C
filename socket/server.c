@@ -220,7 +220,7 @@ for(;;){
 		else{
 			//시간초과 
 			send(client_socket,"0",1,0);
-			printf("select error");
+			printf("select error\n");
 		}
 		
 		 
