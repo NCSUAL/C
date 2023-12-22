@@ -1,3 +1,4 @@
+//우분투(GCC) 환경에서 실행해야 합니다. 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
