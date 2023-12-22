@@ -19,7 +19,7 @@ typedef struct client_recv_data{
 	//현재 게임 보드
 	int send_board[BW+2][BH+2];
 
-	// NEXT 기능 -> 다음에 올 brick2
+	// NEXT 기능 -> 다음에 올 brick
 	int send_nextBrick;
 
 	// HOLD 기능 -> 홀드 사용 유무
@@ -206,7 +206,8 @@ for(;;){
 				
 				//방 입장 클라이언트 
 				send(enter_client_socket,"1",2,0);
-				
+
+
 				//게임
 				
 				//인스턴스 생성
@@ -226,10 +227,25 @@ for(;;){
 				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				
 				int enter_client_socket_data_result = recv(enter_client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
+				
+				// 클라이언트 중 하나라도 연결이 끊어진 경우
+				if (client_socket_data_result <= 0 || enter_client_socket_data_result <= 0) {
+        			printf("Client disconnected\n");
+        			close(client_socket);
+        			close(enter_client_socket);
+       				 break; // 게임 루프 종료
+    			}
 					
-				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
-				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
+				int clinet_socket_data_send_result = send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
+				int enter_clinet_socket_data_send_result = send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
+				
 				//데이터 교환
+				if(clinet_socket_data_send_result<=0 || enter_clinet_socket_data_send_result<=0){
+					printf("Client disconnected\n");
+        			close(client_socket);
+        			close(enter_client_socket);
+       				 break; // 게임 루프 종료
+				}
 
 				if(ntohl(client_recv_data.send_gameover)==1 && ntohl(enter_client_recv_data.send_gameover)==1){
 					//게임 끝 
