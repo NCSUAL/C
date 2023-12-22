@@ -14,22 +14,49 @@
 //버퍼 사이즈 정의
 #define Buffer 128
 
+//클라이언트1 데이터
 typedef struct client_recv_data{
+	//현재 게임 보드
 	int send_board[BW+2][BH+2];
+
+	// NEXT 기능 -> 다음에 올 brick
 	int send_nextBrick;
+
+	// HOLD 기능 -> 홀드 사용 유무
 	int send_One_chance;
+
+	//HOLD 기능 -> 지워진 brick
    	int send_REMOVE_BRICK;
+
+	//HOLD 기능 -> 지워진 Rot
    	int send_REMOVE_ROT;
+
+	//HOLD 기능 -> 홀드 한 블럭을 다시 불러오는 지 유무
    	int send_PREESED_HOLD;
+
+	//Speed 기능 -> 현재 speed
    	int send_speed;
+
+	//현재 블록 nx
 	int send_nx;
+
+	//현재 블록 ny
 	int send_ny;
+
+	//현재 블록 brick
 	int send_brick;
+
+	//현재 블록 rot
 	int send_rot;
+
+	//게임이 끝났는지 유무
 	int send_gameover;
+
+	//현재 점수
 	int send_score;
 } Client_recv_data;
 
+//클라이언트2(들어오는 클라이언트) 데이터 -> 구조 똑같음
 typedef struct enter_client_recv_data{
 	int send_board[BW+2][BH+2];
 	int send_nextBrick;
