@@ -19,7 +19,7 @@ typedef struct client_recv_data{
 	//현재 게임 보드
 	int send_board[BW+2][BH+2];
 
-	// NEXT 기능 -> 다음에 올 brick
+	// NEXT 기능 -> 다음에 올 brick2
 	int send_nextBrick;
 
 	// HOLD 기능 -> 홀드 사용 유무
