@@ -11,25 +11,52 @@
 #define BH 20
 #define random(n) (rand() % (n))
 
-//¹öÆÛ »çÀÌÁî Á¤ÀÇ
+//ë²„í¼ ì‚¬ì´ì¦ˆ ì •ì˜
 #define Buffer 128
 
+//í´ë¼ì´ì–¸íŠ¸1 ë°ì´í„°
 typedef struct client_recv_data{
+	//í˜„ì¬ ê²Œì„ ë³´ë“œ
 	int send_board[BW+2][BH+2];
+
+	// NEXT ê¸°ëŠ¥ -> ë‹¤ìŒì— ì˜¬ brick
 	int send_nextBrick;
+
+	// HOLD ê¸°ëŠ¥ -> í™€ë“œ ì‚¬ìš© ìœ ë¬´
 	int send_One_chance;
+
+	//HOLD ê¸°ëŠ¥ -> ì§€ì›Œì§„ brick
    	int send_REMOVE_BRICK;
+
+	//HOLD ê¸°ëŠ¥ -> ì§€ì›Œì§„ Rot
    	int send_REMOVE_ROT;
+
+	//HOLD ê¸°ëŠ¥ -> í™€ë“œ í•œ ë¸”ëŸ­ì„ ë‹¤ì‹œ ë¶ˆëŸ¬ì˜¤ëŠ” ì§€ ìœ ë¬´
    	int send_PREESED_HOLD;
+
+	//Speed ê¸°ëŠ¥ -> í˜„ì¬ speed
    	int send_speed;
+
+	//í˜„ì¬ ë¸”ë¡ nx
 	int send_nx;
+
+	//í˜„ì¬ ë¸”ë¡ ny
 	int send_ny;
+
+	//í˜„ì¬ ë¸”ë¡ brick
 	int send_brick;
+
+	//í˜„ì¬ ë¸”ë¡ rot
 	int send_rot;
+
+	//ê²Œì„ì´ ëë‚¬ëŠ”ì§€ ìœ ë¬´
 	int send_gameover;
+
+	//í˜„ì¬ ì ìˆ˜
 	int send_score;
 } Client_recv_data;
 
+//í´ë¼ì´ì–¸íŠ¸2(ë“¤ì–´ì˜¤ëŠ” í´ë¼ì´ì–¸íŠ¸) ë°ì´í„° -> êµ¬ì¡° ë˜‘ê°™ìŒ
 typedef struct enter_client_recv_data{
 	int send_board[BW+2][BH+2];
 	int send_nextBrick;
@@ -49,32 +76,32 @@ typedef struct enter_client_recv_data{
 
 int main(int argc, char *argv[]){
 	
-	//ÀÎÀÚ 2°³ ÀÎÁö È®ÀÎ
+	//ì¸ì 2ê°œ ì¸ì§€ í™•ì¸
 	if(argc!=2){
 		fprintf(stderr,"inja need 2\n");
 		exit(1);
 	} 
 	
-	//¼ÒÄÏ »ı¼º 
-	//PF_INET (protocol family internet) -> ipv4 ÇÁ·ÎÅäÄİ »ç¿ëÇÑ´Ù´Â ¶æ
-	//SOCK_STREAM -> ¼ÒÄÏÀ» ½ºÆ®¸²Çü½ÄÀ¸·Î »ç¿ëÇÑ´Ù´Â ¶æ
-	//0 -> ±âº» TCP·Î ¼³Á¤ÇÑ´Ù´Â ¶æ 
+	//ì†Œì¼“ ìƒì„± 
+	//PF_INET (protocol family internet) -> ipv4 í”„ë¡œí† ì½œ ì‚¬ìš©í•œë‹¤ëŠ” ëœ»
+	//SOCK_STREAM -> ì†Œì¼“ì„ ìŠ¤íŠ¸ë¦¼í˜•ì‹ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤ëŠ” ëœ»
+	//0 -> ê¸°ë³¸ TCPë¡œ ì„¤ì •í•œë‹¤ëŠ” ëœ» 
 	int Sock = socket(PF_INET,SOCK_STREAM,0);
 	
 	printf("server_port_open: %s\n",argv[1]);
 
-	//¼ÒÄÏ À¯È¿¼º °Ë»ç
+	//ì†Œì¼“ ìœ íš¨ì„± ê²€ì‚¬
 	if(Sock == -1){
 	printf("error_socket\n");
 	}
-	//¼ÒÄÏ »ı¼º ½ÇÆĞ
+	//ì†Œì¼“ ìƒì„± ì‹¤íŒ¨
 	else{
 	printf("socket create\n");
 	}
 	
 	
 	
-	//¼ÒÄÏ ¼³Á¤ -> Æ÷Æ® Àç»ç¿ë -> °³¹ß Áß¿¡¸¸ »ç¿ëÇÒ ¿¹Á¤ 
+	//ì†Œì¼“ ì„¤ì • -> í¬íŠ¸ ì¬ì‚¬ìš© -> ê°œë°œ ì¤‘ì—ë§Œ ì‚¬ìš©í•  ì˜ˆì • 
 	int option =12*22;
 	if(setsockopt(Sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option))==-1){
 		printf("setting error\n");
@@ -85,22 +112,22 @@ int main(int argc, char *argv[]){
 
 
 
-	//³×Æ®¿öÅ© Á¤º¸ ÀÔ·Â - ¼­¹ö
+	//ë„¤íŠ¸ì›Œí¬ ì •ë³´ ì…ë ¥ - ì„œë²„
 	struct sockaddr_in addr_server;
 	
-	//ÃÊ±âÈ­
+	//ì´ˆê¸°í™”
 	memset(&addr_server,0,sizeof(addr_server));
 
 	//ASCII to integer
 	int port = atoi(argv[1]);
 	
-	//Á¤º¸ ÀÔ·Â
+	//ì •ë³´ ì…ë ¥
 	addr_server.sin_family = AF_INET;
 	addr_server.sin_addr.s_addr =htonl(INADDR_ANY);
 	addr_server.sin_port = htons(port);
 
-	//¹ÙÀÎµå, À¯È¿¼º °Ë»ç -> ¼­¹ö¿¡ ÀÌ ³×Æ®¿öÅ© ±¸Á¶¸¦ »ç¿ëÇÑ´Ù°í ÀåÄ¡¿¡ ¾Ë¸²
-	//sockaddr·Î Çüº¯È¯ ½ÃÄÑÁà¾ßÇÔ
+	//ë°”ì¸ë“œ, ìœ íš¨ì„± ê²€ì‚¬ -> ì„œë²„ì— ì´ ë„¤íŠ¸ì›Œí¬ êµ¬ì¡°ë¥¼ ì‚¬ìš©í•œë‹¤ê³  ì¥ì¹˜ì— ì•Œë¦¼
+	//sockaddrë¡œ í˜•ë³€í™˜ ì‹œì¼œì¤˜ì•¼í•¨
 	if(bind(Sock, (struct sockaddr*) &addr_server,sizeof(addr_server)) == -1){
 	printf("bind error\n");
 	}
@@ -108,7 +135,7 @@ int main(int argc, char *argv[]){
 	printf("bind complete\n");
 	}
 
-	//¸®½¼, À¯È¿¼º °Ë»ç -> Å¬¶óÀÌ¾ğÆ® ¿äÃ»À» ¹ŞÀ½
+	//ë¦¬ìŠ¨, ìœ íš¨ì„± ê²€ì‚¬ -> í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì„ ë°›ìŒ
 	if(listen(Sock,43)==-1){
 	printf("listen error\n");
 	}
@@ -116,19 +143,19 @@ int main(int argc, char *argv[]){
 	printf("server Open!\n"); 
 	}
 
-	//Å¬¶óÀÌ¾ğÆ® ipv4ÁÖ¼Ò
+	//í´ë¼ì´ì–¸íŠ¸ ipv4ì£¼ì†Œ
 	struct sockaddr_in client_server;
 	
-	//sockaddr_in »çÀÌÁîÀü´Ş -> socklen_t°¡ ÁÖ¼Ò±æÀÌ¸¦ ³ªÅ¸³»´Â µ¥ Æ¯È­µÊ
+	//sockaddr_in ì‚¬ì´ì¦ˆì „ë‹¬ -> socklen_tê°€ ì£¼ì†Œê¸¸ì´ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë° íŠ¹í™”ë¨
 	socklen_t client_server_size = sizeof(client_server);
 
-	//Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ & ¿äÃ» Çã¶ô
-	//sockaddr·Î Çüº¯È¯ ½ÃÄÑÁà¾ßÇÔ
+	//í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ & ìš”ì²­ í—ˆë½
+	//sockaddrë¡œ í˜•ë³€í™˜ ì‹œì¼œì¤˜ì•¼í•¨
 for(;;){ 
 
 	int client_socket = accept(Sock,(struct sockaddr*) &client_server , &client_server_size);
 
-	//Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ À¯È¿¼º °Ë»ç
+	//í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ìœ íš¨ì„± ê²€ì‚¬
 	if(client_socket == -1){
 		printf("accept_error\n");
 	}
@@ -137,36 +164,36 @@ for(;;){
 		printf("connect complete\n");
 	
 	
-		//Å¬¶óÀÌ¾ğÆ® ¿¬°á ¼º°ø
+		//í´ë¼ì´ì–¸íŠ¸ ì—°ê²° ì„±ê³µ
 	
 		
-			//Å¬¶óÀÌ¾ğÆ®2 ÀÔÀå
+			//í´ë¼ì´ì–¸íŠ¸2 ì…ì¥
 			struct sockaddr_in enter_client;
 			socklen_t enter_client_size = sizeof(enter_client);
 		
 
-			//½Ã°£ Á¦ÇÑ
+			//ì‹œê°„ ì œí•œ
 			fd_set file_descriptor;
 		
-			//memset ÆÄÀÏ µğ½ºÅ©¸³ÅÍ ¹öÀü 
+			//memset íŒŒì¼ ë””ìŠ¤í¬ë¦½í„° ë²„ì „ 
 			FD_ZERO(&file_descriptor);
 		
-			//fds¿¡ ¼ÒÄÏ ³Ö±â 
+			//fdsì— ì†Œì¼“ ë„£ê¸° 
 			FD_SET(Sock,&file_descriptor); 
 		
-			//Å¸ÀÓº§·ù ±¸Á¶Ã¼
+			//íƒ€ì„ë²¨ë¥˜ êµ¬ì¡°ì²´
 			struct timeval timeout;
-			timeout.tv_sec = 10; //³¡ 10 
-			timeout.tv_usec = 0; //½ÃÀÛ 0
+			timeout.tv_sec = 10; //ë 10 
+			timeout.tv_usec = 0; //ì‹œì‘ 0
 		
 			int result = select(Sock+1,&file_descriptor,NULL,NULL,&timeout);
 		 
-		 	//select À¯È¿¼º 
+		 	//select ìœ íš¨ì„± 
 			if(result!=0){
-				//ÀÔÀå Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ ¹Ş±â 
+				//ì…ì¥ í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ë°›ê¸° 
 				int enter_client_socket = accept(Sock,(struct sockaddr*) &enter_client,&enter_client_size);
 		
-				//À¯È¿¼º °Ë»ç
+				//ìœ íš¨ì„± ê²€ì‚¬
 				if(enter_client_socket==-1){
 					printf("socket error");
 				} 
@@ -174,39 +201,39 @@ for(;;){
 					printf("enter OK\n");
 				}
 		
-				//Á¢¼Ó ¼º°øÇÒ½Ã 
+				//ì ‘ì† ì„±ê³µí• ì‹œ 
 				send(client_socket,"1",1,0);
 				
-				//¹æ ÀÔÀå Å¬¶óÀÌ¾ğÆ® 
+				//ë°© ì…ì¥ í´ë¼ì´ì–¸íŠ¸ 
 				send(enter_client_socket,"1",2,0);
 				
-				//°ÔÀÓ
+				//ê²Œì„
 				
-				//ÀÎ½ºÅÏ½º »ı¼º
+				//ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
 				Client_recv_data client_recv_data; 
-				//Å¬¶óÀÌ¾ğÆ® ¹ŞÀ» ±¸Á¶Ã¼ ÃÊ±âÈ­
+				//í´ë¼ì´ì–¸íŠ¸ ë°›ì„ êµ¬ì¡°ì²´ ì´ˆê¸°í™”
 				memset(&client_recv_data,0,sizeof(client_recv_data)); 
 				
-				//ÀÎ½ºÅÏ½º »ı¼º
+				//ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
 				Enter_client_recv_data enter_client_recv_data; 
-				//enter Å¬¶óÀÌ¾ğÆ® ¹ŞÀ» ±¸Á¶Ã¼ ÃÊ±âÈ­ 
+				//enter í´ë¼ì´ì–¸íŠ¸ ë°›ì„ êµ¬ì¡°ì²´ ì´ˆê¸°í™” 
 				memset(&enter_client_recv_data,0,sizeof(enter_client_recv_data)); 
 				
 				
 				while(1){
 				
-				//µ¥ÀÌÅÍ ±³È¯ 
+				//ë°ì´í„° êµí™˜ 
 				int client_socket_data_result = recv(client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				
 				int enter_client_socket_data_result = recv(enter_client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
 					
 				send(enter_client_socket,&client_recv_data,sizeof(client_recv_data),0);
 				send(client_socket,&enter_client_recv_data,sizeof(enter_client_recv_data),0);
-				//µ¥ÀÌÅÍ ±³È¯
+				//ë°ì´í„° êµí™˜
 
 				if(ntohl(client_recv_data.send_gameover)==1 && ntohl(enter_client_recv_data.send_gameover)==1){
-					//°ÔÀÓ ³¡ 
-					//¼ÒÄÏ ÇØÁ¦ 
+					//ê²Œì„ ë 
+					//ì†Œì¼“ í•´ì œ 
 					close(enter_client_socket);
 					close(client_socket);
 					break;
@@ -218,7 +245,7 @@ for(;;){
 		}
 			
 		else{
-			//½Ã°£ÃÊ°ú 
+			//ì‹œê°„ì´ˆê³¼ 
 			send(client_socket,"0",1,0);
 			printf("select error\n");
 		}
